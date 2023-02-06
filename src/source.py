@@ -8,7 +8,7 @@ from data import make_dataset
 PATH = 'MonRepo\\data\\raw\\images'
 PATH2 = 'MonRepo\\data\\processed'
 os.getcwd()
-train_dataset, validation_dataset, test_dataset = make_dataset.main(input_filepath = PATH, output_filepath = PATH2)
+train_dataset, validation_dataset, test_dataset, class_names = make_dataset.main(input_filepath = PATH, output_filepath = PATH2)
 
 BATCH_SIZE = 32
 IMG_SIZE = (160, 160)
@@ -69,10 +69,10 @@ for layer in base_model.layers[:fine_tune_at]:
   layer.trainable = False
 
 model.compile(loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
-              optimizer = tf.keras.optimizers.RMSprop(learning_rate=base_learning_rate/10),
+              optimizer = tf.keras.optimizers.RMSprop(learning_rate=base_learning_rate/15),
               metrics=['accuracy'])
 
-fine_tune_epochs = 10
+fine_tune_epochs = 15
 total_epochs =  initial_epochs + fine_tune_epochs
 
 history_fine = model.fit(train_dataset,
