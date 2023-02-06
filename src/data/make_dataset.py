@@ -13,7 +13,7 @@ def main(input_filepath, output_filepath):
     """
 
     train_dir = os.path.join(input_filepath, 'training')
-    validation_dir = os.path.join(input_filepath, 'testing')
+    test_dir = os.path.join(input_filepath, 'testing')
 
     BATCH_SIZE = 32
     IMG_SIZE = (160, 160)
@@ -22,7 +22,7 @@ def main(input_filepath, output_filepath):
                                                             shuffle=True,
                                                             batch_size=BATCH_SIZE,
                                                             image_size=IMG_SIZE)
-    test_dataset = tf.keras.utils.image_dataset_from_directory(validation_dir,
+    test_dataset = tf.keras.utils.image_dataset_from_directory(test_dir,
                                                                  shuffle=True,
                                                                  batch_size=BATCH_SIZE,
                                                                  image_size=IMG_SIZE)
